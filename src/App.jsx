@@ -1,8 +1,12 @@
- 
+import Body from "./components/Body"
 
 function App() {
  
-  return <h1 className="" >manoj</h1> 
+  return  (
+
+    <Body/>
+
+  )
 }
 
 export default App
