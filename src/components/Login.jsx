@@ -4,6 +4,7 @@ import { checkValidData } from '../utils/validate';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, } from "firebase/auth";
 import { auth } from '../utils/firebase';
 import { useNavigate } from 'react-router-dom';
+import { updateProfile } from 'firebase/auth';
 
 const Login = () => {
   const [isSignInForm, setIsSignInform] = useState(true); // Default to Sign In
@@ -24,6 +25,13 @@ const Login = () => {
       createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
         .then((userCredential) => {
           const user = userCredential.user;
+          updateProfile(user, {
+  displayName: name.current.value 
+}).then(() => {
+   
+}).catch((error) => {
+ setErrorMessage(error.message) 
+});
           console.log("Signed up successfully:", user);
            navigate("/browse")
         })
